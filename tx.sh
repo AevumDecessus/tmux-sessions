@@ -39,6 +39,7 @@ add_windows()
 check_session()
 {
   if ! $(tmux has-session -t ${SESSION}); then
+    ssh-add
     add_windows
   fi
   attach_session
@@ -49,5 +50,4 @@ attach_session()
   tmux attach-session -t ${SESSION}
 }
 eval "$(ssh-agent -s)"
-ssh-add
 check_session
